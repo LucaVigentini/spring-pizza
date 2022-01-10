@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="fragments/resources :: headTags"></div>
+	<title>Menù</title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-light bg-light">
+  <form class="container-fluid justify-content-start">
+    <a class="btn btn-outline-success me-2" type="button" th:ref="@{/pizza}">Menù</a>
+    <a class="btn btn-sm btn-outline-secondary" type="button" th:ref="@{/create}">Crea</a>
+  </form>
+</nav>
+
+<h1>Menù</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Descrizione</th>
+      <th scope="col">Prezzo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="item : ${list}" >
+      <td th:text="${item.nome}"></td >
+      <td th:text="${item.descrizione}"></td >
+      <td th:text="${item.prezzo}"></td >
+    </tr  >
+
+  </tbody>
+</table>
+
+
+<div th:replace="fragments/resources :: scripts"></div>
+
+</body>
+
+
+</html>
