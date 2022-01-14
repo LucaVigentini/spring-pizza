@@ -1,48 +1,61 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<div th:replace="fragments/resources :: headTags"></div>
-		<title>Edit Pizza</title>
-	</head>
-	<body> 
-	
-<nav class="navbar navbar-light bg-light">
-  <form class="container-fluid justify-content-start">
-    <a class="nav-link" type="button" th:ref="@{/pizza}">Menù</a>
-    <a class="nav-link" type="button" th:ref="@{/create}">Crea</a>
-  </form>
-</nav>
-	
-	
-	
-	<form 
-				id="pizza-form" 
-				th:object="${pizza}"
-				th:action="@{/pizza/create}"
-				method="post"
-			>
-			<div class="row gy-2">
-				<div class="col-12">
-					<label class="form-label" for="title">Nome</label>
-					<input type="text" class="form-control" id="title" th:field="*{nome}">
+
+<head>
+	<div th:replace="fragments/resources :: headTags"></div>
+	<title>Edit Pizza</title>
+</head>
+
+<body>
+
+	<nav th:replace="fragments/navbar"></nav>
+
+
+	</nav>
+
+
+	<form id="pizza-form" th:object="${pizza}" th:action="@{/pizza/create}" method="post">
+
+		<div class="row gy-2">
+			<div class="col-12">
+				<label class="form-label" for="title">Nome</label>
+				<input type="text" class="form-control" id="title" th:field="*{nome}" th:errorClass="is-invalid">
+				<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+					<ul>
+						<li th:each="err : ${#fields.errors('nome')}" th:text="${err}" class="text-danger"></li>
+					</ul>
+
 				</div>
-				<div class="col-12">
-					<label class="form-label" for="authors">Descrizione</label>
-					<input type="text" class="form-control" id="authors" th:field="*{descrizione}">
+			</div>
+			
+			<div class="col-12">
+				<label class="form-label" for="authors">Descrizione</label>
+				<input type="text" class="form-control" id="authors" th:field="*{descrizione}" th:errorClass="is-invalid">
+				<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+					<ul>
+						<li th:each="err : ${#fields.errors('descrizione')}" th:text="${err}" class="text-danger"></li>
+					</ul>
 				</div>
-				
+			</div>
+			
 				<div class="col-3">
 					<label class="form-label" for="year">Prezzo</label>
-					<input type="number" class="form-control" id="year" th:field="*{prezzo}">
+					<input type="number" class="form-control" id="year" th:field="*{prezzo}" th:errorClass="is-invalid">
+					<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+					<ul>
+						<li th:each="err : ${#fields.errors('prezzo')}" th:text="${err}" class="text-danger"></li>
+					</ul>
 				</div>
-				
+				</div>
 				<div class="col-12">
 					<button class="btn btn-primary" type="submit">Save</button>
 				</div>
-			</div>	
-			</form>
+			</div>
 			
-			<div th:replace="fragments/resources :: scripts"></div>
-			
-			</body>
+	</form>
+
+	<div th:replace="fragments/resources :: scripts"></div>
+
+</body>
+
 </html>
