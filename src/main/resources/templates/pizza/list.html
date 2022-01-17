@@ -25,7 +25,7 @@
 		<tbody>
 			<tr th:each="item : ${list}">
 				<td th:text="${item.nome}"></td>
-				<td th:text="${item.descrizione}"></td>
+				<td class="d-flex" th:each="ingrediente : ${item.getIngredienti()}" th:text="${ingrediente.nome}"></td>
 				<td th:text="${item.prezzo}"></td>
 			</tr>
 

@@ -31,7 +31,7 @@
 			<div class="col-12">
 				<label class="form-label" for="authors">Descrizione</label>
 				<input type="text" class="form-control" id="authors" th:field="*{descrizione}" th:errorClass="is-invalid">
-				<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+				<div th:if="${#fields.hasErrors('descrizione')}" class="invalid-feedback">
 					<ul>
 						<li th:each="err : ${#fields.errors('descrizione')}" th:text="${err}" class="text-danger"></li>
 					</ul>
@@ -41,16 +41,25 @@
 				<div class="col-3">
 					<label class="form-label" for="year">Prezzo</label>
 					<input type="number" class="form-control" id="year" th:field="*{prezzo}" th:errorClass="is-invalid">
-					<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+					<div th:if="${#fields.hasErrors('prezzo')}" class="invalid-feedback">
 					<ul>
 						<li th:each="err : ${#fields.errors('prezzo')}" th:text="${err}" class="text-danger"></li>
 					</ul>
 				</div>
 				</div>
+				 <div class="col-4">
+                <h4>Ingredienti</h4>
+                <div class="form-check" th:each="ingrediente : ${list}">
+                    <input class="form-check-input" type="checkbox" th:id="${ingrediente.id}" th:value="${ingrediente.id}" th:field="*{ingredienti}">
+                    <label class="form-check-label" th:for="${ingrediente.id}" th:text="${ingrediente.nome}"></label>
+                </div>
+            </div>
 				<div class="col-12">
 					<button class="btn btn-primary" type="submit">Save</button>
 				</div>
 			</div>
+			
+			
 			
 	</form>
 

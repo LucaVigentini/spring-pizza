@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="fragments/resources :: headTags"></div>
+	<title>Ingredienti</title>
+</head>
+
+<body>
+
+	<nav th:replace="fragments/navbar"></nav>
+	<h1>Ingredienti</h1>
+
+	<form id="ingrediente-form" th:object="${ingrediente}" th:action="@{/pizza/ingredienti}" method="post">
+
+		<label class="form-label" for="title">Nome</label>
+		<input type="text" class="form-control" id="title" th:field="*{nome}" th:errorClass="is-invalid">
+		<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+			<ul>
+				<li th:each="err : ${#fields.errors('nome')}" th:text="${err}" class="text-danger"></li>
+			</ul>
+
+		</div>
+		<div class="col-12">
+			<button class="btn btn-primary" type="submit">Save</button>
+		</div>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Nome</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ingrediente : ${list}">
+					<td th:text="${ingrediente.nome}"></td>
+				</tr>
+
+			</tbody>
+		</table>
+
+
+
+		<div th:replace="fragments/resources :: scripts"></div>
+
+
+</body>
+
+</html>
