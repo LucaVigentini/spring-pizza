@@ -14,10 +14,13 @@
 	</nav>
 
 
-	<form id="pizza-form" th:object="${pizza}" th:action="@{/pizza/create}" method="post">
+	<form id="pizza-form" 
+	th:object="${pizza}" 
+	th:action="${edit} ? @{/pizza/edit/{id}(id=${pizza.id})} : @{/pizza/create}" 
+	method="post">
 
 		<div class="row gy-2">
-			<div class="col-12">
+			<div class="col-8">
 				<label class="form-label" for="title">Nome</label>
 				<input type="text" class="form-control" id="title" th:field="*{nome}" th:errorClass="is-invalid">
 				<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
@@ -26,9 +29,9 @@
 					</ul>
 
 				</div>
-			</div>
 			
-			<div class="col-12">
+			
+			
 				<label class="form-label" for="authors">Descrizione</label>
 				<input type="text" class="form-control" id="authors" th:field="*{descrizione}" th:errorClass="is-invalid">
 				<div th:if="${#fields.hasErrors('descrizione')}" class="invalid-feedback">
@@ -36,9 +39,9 @@
 						<li th:each="err : ${#fields.errors('descrizione')}" th:text="${err}" class="text-danger"></li>
 					</ul>
 				</div>
-			</div>
 			
-				<div class="col-3">
+			
+				
 					<label class="form-label" for="year">Prezzo</label>
 					<input type="number" class="form-control" id="year" th:field="*{prezzo}" th:errorClass="is-invalid">
 					<div th:if="${#fields.hasErrors('prezzo')}" class="invalid-feedback">
@@ -46,7 +49,9 @@
 						<li th:each="err : ${#fields.errors('prezzo')}" th:text="${err}" class="text-danger"></li>
 					</ul>
 				</div>
+				
 				</div>
+				
 				 <div class="col-4">
                 <h4>Ingredienti</h4>
                 <div class="form-check" th:each="ingrediente : ${list}">

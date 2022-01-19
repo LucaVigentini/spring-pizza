@@ -18,8 +18,10 @@
 		<thead>
 			<tr>
 				<th scope="col">Nome</th>
-				<th scope="col">Descrizione</th>
+				<th scope="col">Ingredienti</th>
 				<th scope="col">Prezzo</th>
+				<th></th>
+				
 			</tr>
 		</thead>
 		<tbody>
@@ -27,6 +29,11 @@
 				<td th:text="${item.nome}"></td>
 				<td class="d-flex" th:each="ingrediente : ${item.getIngredienti()}" th:text="${ingrediente.nome}"></td>
 				<td th:text="${item.prezzo}"></td>
+				<td>
+					<a class="btn btn-primary" th:href="@{|/pizza/detail/${item.id}|}"><i class="fas fa-info"></i></a>
+					<a class="btn btn-primary" th:href="@{|/pizza/edit/${item.id}|}"><i class="far fa-edit"></i></a>
+					<a class="btn btn-primary" th:href="@{|/pizza/delete/${item.id}|}"><i class="fas fa-trash"></i></i></a>
+				</td>
 			</tr>
 
 		</tbody>
